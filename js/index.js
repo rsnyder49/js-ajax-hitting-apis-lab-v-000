@@ -28,10 +28,10 @@ function displayRepositories(event, data) {
 function getCommits(ele) {
   const repoName = ele.dataset.repository;
   const uri = "https://api.github.com/repos/" + ele.dataset.username + "/" + repoName + "/commits";
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener("load", displayCommits);
-  xhr.open("GET", uri);
-  xhr.send();
+  const req = new XMLHttpRequest();
+  req.addEventListener("load", displayCommits);
+  req.open("GET", uri);
+  req.send();
 }
 
 function displayCommits() {
@@ -50,7 +50,7 @@ function getBranches(ele) {
   req.send();
 }
  
-  function displayBranches() {
+function displayBranches() {
   const branches = JSON.parse(this.responseText);
   const branchesList = `<ul>${branches.map(branch => '<li>' + branch.name + '</li>').join('')}</ul>`;
   document.getElementById("details").innerHTML = branchesList;
